@@ -1,2 +1,12 @@
-# shosekicalculator
+#shosekicalculator
+
 web extension for calculating shoseki estimate via naive linear interpolation method
+
+- current build is only for chrome web browser
+- The process it current;y automatic, will consider adding a prompt in the future
+
+STEPS
+1. Download the repository .zip file.
+2. Extract/Unzip the file to a directory somewhere your PC.
+3. in Chrome go to Menu (the three lines)->More tools->Extensions. Click the “Developer mode” checkbox and then click the button labeled “Load unpacked extension…”.
+4. Navigate in the resulting file dialog box until you are in the directory with a manifest.json file.
