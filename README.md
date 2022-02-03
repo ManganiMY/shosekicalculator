@@ -2,6 +2,8 @@
 
 web extension for calculating shoseki estimate via naive linear interpolation method
 
+The extension will append the weekly, monthly, , half-year, and yearly list with esimated value calcuated suing a naive linear interpolation method from the range given
+
 - current build is only for chrome web browser
 - The process it current;y automatic, will consider adding a prompt in the future
 
