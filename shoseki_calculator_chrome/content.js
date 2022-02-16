@@ -93,13 +93,19 @@ else {
 }
 
 var j = 0;
+
+
 for (var i=0; i < math_anchor.length; i++) {
 	if (j === 500) {
 		break;
 	}
 	if (math_anchor[i].nodeName == "BR") {
-	math_anchor[i-1].textContent += " | " + est_range[j] +" |"
+	var tag = document.createElement("span")
+	tag.className = "estimates";
+	tag.innerHTML = " | " + est_range[j].toLocaleString() + " | ";
+	math_anchor[i].before(tag);
 	j = j + 1
+	i = i + 1
 		}		
 }
 }
