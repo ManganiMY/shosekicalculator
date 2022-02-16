@@ -1,11 +1,12 @@
 {
   "name": "Shoseki Calculator",
-  "description": "Shoseki Estimate Calculator!",
-  "version": "0.0.1",
+  "description": "Shoseki Estimate Calculator for firefox!",
+  "version": "0.0.2",
   "manifest_version": 2,
   "content_scripts": [{
     
     "js": ["content.js"],
+	"css": ["estimate.css"],
     "matches": ["http://shosekiranking.blog.fc2.com/*"]
   }],
   "permissions": ["storage", "activeTab"],
