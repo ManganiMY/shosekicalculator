@@ -1,4 +1,3 @@
-document.getElementById("myInput").addEventListener("keyup", filterfunction);
 function filterfunction() {
   // Declare variables
   var input, filter, table, tr, td, i, txtValue;
