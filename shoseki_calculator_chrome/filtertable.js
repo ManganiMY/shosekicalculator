@@ -1,6 +1,5 @@
 function empty_input(){
     const dataTable = document.getElementById("dataTable");
-
     let table_search = document.createElement("INPUT");
     table_search.setAttribute("type","text");
     table_search.setAttribute("id","myInput");
@@ -20,11 +19,28 @@ function cleanup_page(){
 
 }
 
-cleanup_page()
-empty_input()
-var s = document.createElement('script');
-s.src = chrome.runtime.getURL('filter_function.js');
-s.onload = function() {
-    this.remove();
-};
-(document.head || document.documentElement).appendChild(s);
+function filter_table_main(){
+    cleanup_page();
+    empty_input();
+    var filter_script = document.createElement('script');
+    filter_script.src = chrome.runtime.getURL('filter_function.js');
+    filter_script.onload = function() {
+        this.remove();
+    };
+    (document.head || document.documentElement).appendChild(filter_script);
+}
+
+function check_page_type(){
+    if (
+        window.location.href.indexOf("blog-date") != -1 || 
+        window.location.href.indexOf("blog-category") != -1 || 
+        window.location.href.indexOf("blog-entry-32.html") != -1
+    ){
+        return
+    }
+    else {
+        filter_table_main()
+    }
+  
+  }
+check_page_type()

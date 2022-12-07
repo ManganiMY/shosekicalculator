@@ -11,12 +11,10 @@ function checkpage() {
       check_split[0].includes("年上半期") ||
       check_split[0].concat(check_split[1]).includes("年漫画")
   )   {
-      // console.log("passed"); // debug check
-      return 5
+      return 5;
       }
   else {
-    return 4
-          // console.log("not passed") // debug check
+    return 4;
       }
   }
 
@@ -29,24 +27,40 @@ function extract() {
   let full_data = [];
   let single_data =[];
   let k = checkpage();
+  console.log(k);
   for ( let i=0; i<math_anchor.length; i++) {
     if (math_anchor[i].nodeName != "BR") {
-      j = j +1 
+      j = j +1 ;
       if (j>k){
-        full_data.push(single_data)
+        full_data.push(single_data);
         break;
+      }
+      else if (math_anchor[i].nodeName == "SCRIPT"){
+        full_data.push(single_data);
+        break;
+      }
+      else if (math_anchor[i].nodeName == "DIV"){
+        full_data.push(single_data);
+        break;
+      }
+      else if (math_anchor[i].nodeName == "IMG"){
+        continue;
       }
       single_data.push(math_anchor[i].textContent);
     }
     else {
-      if (j <3){
+      if (j <3 && i > 100){
         break;
       }
-      full_data.push(single_data);
+      else if(j>2){
+        full_data.push(single_data);
+      }
+      // console.log(single_data); // check for each table
       single_data = [];
-      j = 0
+      j = 0;
     }
   }
+  // console.log(full_data); //check for final table
   page_parent.removeChild(Entry);
   createTable(full_data, page_parent);
 
@@ -54,7 +68,7 @@ function extract() {
 
 function createTable(tableData, page_parent) {
   let table = document.createElement('table');
-  table.setAttribute("id","dataTable")
+  table.setAttribute("id","dataTable");
   let tableBody = document.createElement('tbody');
 //   let columngroup = document.createElement("COLGROUP");
 
@@ -75,5 +89,17 @@ function createTable(tableData, page_parent) {
   page_parent.appendChild(table);
 }
 
-extract()
+function check_page_type(){
+  if (
+      window.location.href.indexOf("blog-date") != -1 || 
+      window.location.href.indexOf("blog-category") != -1 || 
+      window.location.href.indexOf("blog-entry-32.html") != -1
+  ){
+    return
+  }
+  else {
+    extract()
+  }
 
+}
+ check_page_type()

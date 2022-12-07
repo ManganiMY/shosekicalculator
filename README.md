@@ -10,6 +10,8 @@ The extension will append the weekly, monthly, half-year, and yearly list with e
 - maybe add some styling for better viewing but not now.
 
 STEPS (Chrome)
+Alternative DL 
+(https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2FManganiMY%2Fshosekicalculator%2Ftree%2Fmain%2Fshoseki_calculator_chrome)
 1. Download the repository .zip file. (all or the just the "shoseki_calculator_chrome" directory).
 2. Extract/Unzip the file to a directory somewhere your PC.
 3. in Chrome go to Menu (the three lines)->More tools->Extensions. Click the “Developer mode” checkbox and then click the button labeled “Load unpacked extension…”.

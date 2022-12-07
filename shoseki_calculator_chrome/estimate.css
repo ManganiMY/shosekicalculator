@@ -29,13 +29,7 @@ td {
  padding:0px 1em;
 }
 
-table td:nth-child(3){  /* this will go to the  column of a table directly */
-	padding: 0;
-	width: 0;
-	border: 0;
-	}
-
-table td:nth-child(5){  /* this will go to the  column of a table directly */
+table td:nth-child(4){  /* this will go to the  column of a table directly */
 	text-align: center;
 	border-color: black;
 	color : red;

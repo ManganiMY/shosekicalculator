@@ -12,10 +12,10 @@ function checkpage() {
         check_split[0].concat(check_split[1]).includes("年漫画")
     )   {
         // console.log("passed"); // debug check
-        shoseki()
+        shoseki();
         }
     else {
-            // console.log("not passed") // debug check
+            // console.log("not passed"); // debug check
         }
     }
 
@@ -54,8 +54,10 @@ function shoseki() {
             for (let i = 1; i < found_list.length; i += 2) { // and convert
                 if (found_list[i] < 1000) {
                     found_list[i] = found_list[i] * 10000;
-                } else
+                } 
+                else {
                     found_list[i] = found_list[i];
+                }
             }
         } else {
             found_list = found.split("/").join('|').split("位").join('|').split('|');
@@ -111,18 +113,19 @@ function shoseki() {
                 break;
             }
             if (math_anchor[i].nodeName == "BR") {
-                if (i < 3) {
-                    continue
-                }
-                let tag = document.createElement("span")
+                if (j <1){ // for first estimate
+                if (i < 3 || (math_anchor[i+2].nodeName!="A" || math_anchor[i-1].nodeName=="BR")) {
+                    continue;
+                }}
+                let tag = document.createElement("span");
                     tag.className = "estimates";
                 tag.innerHTML = est_range[j].toLocaleString();
                 math_anchor[i].before(tag);
-                j = j + 1
-                    i = i + 1
+                j = j + 1;
+                i = i + 1;
             }
         }
 
     } 
 
-checkpage() 
+checkpage()
