@@ -1,5 +1,59 @@
-.estimates {
-	display : inline ; 
-	color : red;
+div#container {
+	display: flex;
+	max-width: 85% !important;
+
 }
+
+div#primary {
+	float: none !important;
+	margin-right: 0px !important;
+}
+
+div#main {
+	margin-right: 30px !important;
+	margin-left: 30px !important;
+}
+
+table#dataTable{
+	width: 95%;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+table, th, td {
+	border-collapse: collapse;
+	border: 1px solid;
+  }
+
+td {
+ padding:0px 1em;
+}
+
+table td:nth-child(3){  /* this will go to the  column of a table directly */
+	padding: 0;
+	width: 0;
+	border: 0;
+	}
+
+table td:nth-child(5){  /* this will go to the  column of a table directly */
+	text-align: center;
+	border-color: black;
+	color : red;
+	}
 	
+table td:nth-child(2){  /* this will go to the  column of a table directly */
+	text-align: center;
+	max-width: 8em;
+	}
+#myInput {
+  background-image: url('/css/searchicon.png'); /* Add a search icon to input */
+  background-position: 10px 12px; /* Position the search icon */
+  background-repeat: no-repeat; /* Do not repeat the icon image */
+  width: 90%; /* Full-width */
+  font-size: 16px; /* Increase font-size */
+  padding: 12px 20px 12px 40px; /* Add some padding */
+  border: 1px solid #ddd; /* Add a grey border */
+  margin-bottom: 12px; /* Add some space below the input */
+  margin-left: 20px;
+  margin-right: 20px;
+}
