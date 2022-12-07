@@ -125,4 +125,4 @@ function shoseki() {
 
     } 
 
-checkpage()
+checkpage() 
