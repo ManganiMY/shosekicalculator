@@ -1,13 +1,17 @@
 {
   "name": "Shoseki Calculator",
   "description": "Shoseki Estimate Calculator!",
-  "version": "0.0.3",
+  "version": "0.0.7",
   "manifest_version": 3,
   "content_scripts": [{
     
-    "js": ["content.js"],
+    "js": ["calculator.js", "tabulate.js", "filtertable.js"],
 	"css": ["estimate.css"],
-    "matches": ["http://shosekiranking.blog.fc2.com/*"]
+    "matches": ["http://shosekiranking.blog.fc2.com/*","http://bunkoranoberanking.blog.fc2.com/*"]
+  }],
+  "web_accessible_resources": [{
+    "resources": ["filter_function.js"],
+    "matches": ["<all_urls>"]
   }],
   "permissions": ["storage", "activeTab", "scripting"],
 

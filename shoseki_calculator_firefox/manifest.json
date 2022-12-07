@@ -1,15 +1,22 @@
+
 {
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "fx-shoseki-calc@manganimy.dev"
+    }
+  },
+
   "name": "Shoseki Calculator",
-  "description": "Shoseki Estimate Calculator for firefox!",
-  "version": "0.0.3",
+  "description": "Shoseki Estimate Calculator for FX!",
+  "version": "0.0.7",
   "manifest_version": 2,
   "content_scripts": [{
     
-    "js": ["content.js"],
+    "js": ["calculator.js", "tabulate.js", "filtertable.js"],
 	"css": ["estimate.css"],
-    "matches": ["http://shosekiranking.blog.fc2.com/*"]
+    "matches": ["http://shosekiranking.blog.fc2.com/*","http://bunkoranoberanking.blog.fc2.com/*"]
   }],
-  "permissions": ["storage", "activeTab"],
+  "permissions": ["storage", "activeTab", "scripting"],
 
   "icons": {
     "16": "/images/shoseki16.png",
