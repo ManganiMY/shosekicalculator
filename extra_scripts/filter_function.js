@@ -1,3 +1,4 @@
+document.getElementById("myInput").onkeyup = function() {filterfunction()};
 function filterfunction() {
   // Declare variables
   var input, filter, table, tr, td, i, txtValue;
