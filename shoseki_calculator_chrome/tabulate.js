@@ -27,7 +27,6 @@ function extract() {
   let full_data = [];
   let single_data =[];
   let k = checkpage();
-  console.log(k);
   for ( let i=0; i<math_anchor.length; i++) {
     if (math_anchor[i].nodeName != "BR") {
       j = j +1 ;
@@ -40,8 +39,13 @@ function extract() {
         break;
       }
       else if (math_anchor[i].nodeName == "DIV"){
+        if (math_anchor[i].classList.contains("google-auto-placed")){
+          j = j-1;
+          continue;
+        } else {
         full_data.push(single_data);
         break;
+        }
       }
       else if (math_anchor[i].nodeName == "IMG"){
         continue;

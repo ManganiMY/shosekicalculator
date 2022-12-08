@@ -39,8 +39,8 @@ function check_page_type(){
         return
     }
     else {
-        filter_table_main()
+        filter_table_main();
     }
   
   }
-check_page_type()
+check_page_type();
