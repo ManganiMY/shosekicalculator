@@ -29,7 +29,7 @@ td {
  padding:0px 1em;
 }
 
-table td:nth-child(4){  /* this will go to the  column of a table directly */
+table td:nth-child(7){  /* this will go to the  column of a table directly */
 	text-align: center;
 	border-color: black;
 	color : red;
@@ -39,7 +39,7 @@ table td:nth-child(2){  /* this will go to the  column of a table directly */
 	text-align: center;
 	max-width: 8em;
 	}
-#myInput {
+.filter_input {
   background-image: url('/css/searchicon.png'); /* Add a search icon to input */
   background-position: 10px 12px; /* Position the search icon */
   background-repeat: no-repeat; /* Do not repeat the icon image */
@@ -50,4 +50,20 @@ table td:nth-child(2){  /* this will go to the  column of a table directly */
   margin-bottom: 12px; /* Add some space below the input */
   margin-left: 20px;
   margin-right: 20px;
+}
+div#val{
+	margin: 10px;
+	/* display: flex; */
+	padding: 20px;
+	font-size: medium;
+	/* align-items: center; */
+	border-top: 0.5px solid black;
+}
+span#span_text{
+	float: left;
+}
+
+span#span_val{
+	margin-right: 10px;
+	float: right;
 }

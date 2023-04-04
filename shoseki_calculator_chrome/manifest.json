@@ -7,7 +7,7 @@
     
     "js": ["calculator.js", "tabulate.js", "filtertable.js"],
 	"css": ["estimate.css"],
-    "matches": ["http://shosekiranking.blog.fc2.com/*"]
+    "matches": ["http://shosekiranking.blog.fc2.com/*","http://bunkoranoberanking.blog.fc2.com/*"]
   }],
   "web_accessible_resources": [{
     "resources": ["filter_function.js"],

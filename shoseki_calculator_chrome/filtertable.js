@@ -1,12 +1,31 @@
 function empty_input(){
     const dataTable = document.getElementById("dataTable");
-    let table_search = document.createElement("INPUT");
-    table_search.setAttribute("type","text");
-    table_search.setAttribute("id","myInput");
-    table_search.setAttribute("onkeyup","filterfunction()");
-    table_search.setAttribute("placeholder","Enter series name... (only JP supported for now)");
+    let name_search = document.createElement("INPUT");
+    name_search.setAttribute("type","text");
+    name_search.setAttribute("id","name_filter");
+    name_search.setAttribute("class","filter_input");
+    name_search.setAttribute("onkeyup","filterfunction('name_filter')");
+    name_search.setAttribute("placeholder","Enter series name... (only JP supported for now)");
 
-    dataTable.before(table_search);
+    dataTable.before(name_search);
+
+    let pub_search = document.createElement("INPUT");
+    pub_search.setAttribute("type","text");
+    pub_search.setAttribute("id","pub_filter");
+    pub_search.setAttribute("class","filter_input");
+    pub_search.setAttribute("onkeyup","filterfunction('pub_filter')");
+    pub_search.setAttribute("placeholder","Enter publisher name... (only JP supported for now)");
+
+    dataTable.before(pub_search);
+
+    let date_search = document.createElement("INPUT");
+    date_search.setAttribute("type","text");
+    date_search.setAttribute("id","date_filter");
+    date_search.setAttribute("class","filter_input");
+    date_search.setAttribute("onkeyup","filterfunction('date_filter')");
+    date_search.setAttribute("placeholder","Enter Date in YYYY-MM-DD format (partial date supported)");
+
+    dataTable.before(date_search);
 }
 
 function cleanup_page(){

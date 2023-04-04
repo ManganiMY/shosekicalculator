@@ -42,15 +42,16 @@ function extract() {
         if (math_anchor[i].classList.contains("google-auto-placed")){
           j = j-1;
           continue;
-        } else {
-        full_data.push(single_data);
+        } 
+        else {
+          full_data.push(single_data);
         break;
         }
       }
       else if (math_anchor[i].nodeName == "IMG"){
         continue;
       }
-      single_data.push(math_anchor[i].textContent);
+      single_data.push(...math_anchor[i].textContent.trim().split(" "));
     }
     else {
       if (j <3 && i > 100){
@@ -91,8 +92,45 @@ function createTable(tableData, page_parent) {
 //   table.appendChild(columngroup);
   table.appendChild(tableBody);
   page_parent.appendChild(table);
+  cols = table.rows[0].cells.length;
+  if (cols > 6) {
+    val = document.createElement('div');
+    val.setAttribute("id", "val");
+    page_parent.appendChild(val);
+    span_text = document.createElement('span');
+    span_text.setAttribute('id','span_text')
+    span_text.innerHTML = "Subtotal = "
+    span_val = document.createElement('span');
+    span_val.setAttribute('id','span_val');
+    val.appendChild(span_text);
+    val.appendChild(span_val);
+  }
+
 }
 
+function excel_dates(){
+  table = document.getElementById("dataTable");
+  cols = table.rows[0].cells.length;
+
+  if (cols > 3) {
+    date_col = table.rows[0].cells[5].innerHTML;
+    const test_val = [".","/","-"];
+     let date_check = test_val.some(el => date_col.includes(el));
+   if(!date_check){
+    all_row =  Array.from(table.rows)
+    all_row.forEach(row => {
+      true_date = new Date(Math.round((row.cells[5].innerHTML - 25569)*86400*1000));
+      y = true_date.getFullYear()
+      m = true_date.getMonth() + 1
+      d =true_date.getDate()
+      
+      console.log(y +'.' + m + '.' + d);
+      row.cells[5].innerHTML = y +'.' + m + '.' + d;
+    });
+   }
+    
+  }
+}
 function check_page_type(){
   if (
       window.location.href.indexOf("blog-date") != -1 || 
@@ -103,6 +141,7 @@ function check_page_type(){
   }
   else {
     extract()
+    excel_dates()
   }
 
 }
