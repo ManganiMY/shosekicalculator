@@ -35,7 +35,11 @@ function shoseki() {
         let k;
         let l;
 
+<<<<<<< HEAD
         for (let i = math_anchor.length - 1 ; i >= 0; i--) { //Find estimates
+=======
+        for (let i = 500; i < math_anchor.length; i++) { //Find estimates
+>>>>>>> 11e6b31 (add min range)
             if (math_anchor[i].textContent.includes(searchText)) {
                 found = math_anchor[i + 2].textContent;
                 break;
