@@ -1,124 +1,131 @@
-var check = document.getElementsByClassName('entry_header')[0];
+function checkpage() {
 
-if (check.textContent.split(" ")[0].includes("-") == true || check.textContent.split(" ")[0].includes("月") == true ||  check.textContent.split(" ")[0].includes("年漫画") == true||check.textContent.split(" ")[0].includes("年下半期") == true || check.textContent.split(" ")[0].includes("年上半期") == true || check.textContent.split(" ")[0].concat(check.textContent.split(" ")[1]).includes("年漫画") == true) {
+    const check = document.getElementsByClassName('entry_header')[0];
+    const check_split = check.textContent.split(" ");
 
-var Entry = document.getElementsByClassName('entry_body')[0];
-var math_anchor = Entry.childNodes;
-var searchText = "※";
-var found = "xempty";
-var found_list;
-var estimates = [];
-var multiplier = [];
-var est_range = [];
-var insert_list = [];
-var results = [];
-var n;
-var j = 0;
-var k;
-
-
-for (var i = 0; i < math_anchor.length; i++) {
-  if (math_anchor[i].textContent.includes(searchText)) {
-    found = math_anchor[i+2].textContent;
-    break;
-  }
-};
-
-if (found == "xempty"){
-	}
-	
-else{
-	if (found.includes("万")) {
-		found_list = found.split("万").join("").split("/").join('|').split("位").join('|').split('|');
-		found_list = found_list.map(Number);
-		for (var i = 1; i < found_list.length; i+= 2) {
-			if (found_list[i] < 1000) {
-			found_list[i] = found_list[i] * 10000
-			}
-			else 
-			found_list[i] = found_list[i]
-		}
-	}
-	else {
-		found_list = found.split("/").join('|').split("位").join('|').split('|');
-		found_list = found_list.map(Number);
-	}
+    if (
+        check_split[0].includes("-") ||
+        check_split[0].includes("月") ||
+        check_split[0].includes("年漫画") ||
+        check_split[0].includes("年下半期") ||
+        check_split[0].includes("年上半期") ||
+        check_split[0].concat(check_split[1]).includes("年漫画")
+    )   {
+        // console.log("passed"); // debug check
+        shoseki();
+        }
+    else {
+            // console.log("not passed"); // debug check
+        }
+    }
 
 
-	for(var i = 1; i < found_list.length; i += 2) {  // take every second element
-		estimates.push(found_list[i]);
-		}
-	estimates;
+function shoseki() {
+        const Entry = document.getElementsByClassName('entry_body')[0];
+        let math_anchor = Entry.childNodes;
+        const searchText = "※";
+        let found = "xempty";
+        let found_list;
+        let ranges = [];
+        let estimates = [];
+        let multiplier = [];
+        let est_range = [];
+        let n;
+        let j = 0;
+        let k;
+        let l;
 
-	for(var i = 1; i < found_list.length-2; i += 2) {  // take every second element
-		n = (found_list[ i ] - found_list[ i + 2]) / (found_list[ i + 1 ] - found_list[ i - 1 ])
-		multiplier.push(n)
-		}
+        for (let i = math_anchor.length - 1 ; i >= 0; i--) { //Find estimates
+            if (math_anchor[i].textContent.includes(searchText)) {
+                found = math_anchor[i + 2].textContent;
+                break;
+            }
+        };
 
-	if (check.textContent.split(" ")[0].includes("年下半期") == true || check.textContent.split(" ")[0].includes("年上半期") == true ||check.textContent.split(" ")[0].includes("年漫画") == true|| check.textContent.split(" ")[0].concat(check.textContent.split(" ")[1]).includes("年漫画") == true) {
-		for (var i= 1; i < 501; i++) {
-			if (i < 100 ) {
-				est_range.push("no estimates")
-				}
-			else if(i < 200 ) {
-				est_range.push(Math.floor(estimates[0] - (multiplier[0] * (i - 100))))
-				}
-			else if(i < 300 ) {
-				est_range.push(Math.floor(estimates[1] - (multiplier[1] * (i - 200))))
-				}
-			else if(i < 400 ) {
-				est_range.push(Math.floor(estimates[2] - (multiplier[2] * (i - 300))))
-				}		
-			else if(i < 501 ) {
-				est_range.push(Math.floor(estimates[3] - (multiplier[3] * (i - 400))))
-				}
-			}	
-	}
-	else {		
-		for (var i= 1; i < 501; i++) {
-			if (i < 30 ) {
-				est_range.push("no estimates")
-				}
-			else if(i < 50 ) {
-				est_range.push(Math.floor(estimates[0] - (multiplier[0] * (i - 30))))
-				}
-			else if(i < 100 ) {
-				est_range.push(Math.floor(estimates[1] - (multiplier[1] * (i - 50))))
-				}
-			else if(i < 200 ) {
-				est_range.push(Math.floor(estimates[2] - (multiplier[2] * (i - 100))))
-				}
-			else if(i < 300 ) {
-				est_range.push(Math.floor(estimates[3] - (multiplier[3] * (i - 200))))
-				}
-			else if(i < 400 ) {
-				est_range.push(Math.floor(estimates[4] - (multiplier[4] * (i - 300))))
-				}		
-			else if(i < 501 ) {
-				est_range.push(Math.floor(estimates[5] - (multiplier[5] * (i - 400))))
-				}
-			}	
-	}
+        if (found == "xempty") { // if no estimates
+            // console.log("no estimates found"); // debug check
+            return;
+        }
 
-	var j = 0;
+        if (found.includes("万")) { // check for 万 symbol
+            found_list = found.split("万").join("").split("/").join('|').split("位").join('|').split('|');
+            found_list = found_list.map(Number);
 
+            for (let i = 1; i < found_list.length; i += 2) { // and convert
+                if (found_list[i] < 1000) {
+                    found_list[i] = found_list[i] * 10000;
+                } 
+                else {
+                    found_list[i] = found_list[i];
+                }
+            }
+        } else {
+            found_list = found.split("/").join('|').split("位").join('|').split('|');
+            found_list = found_list.map(Number);
+        }
+        // console.log(found_list);
+        // console.log(found_list.length);
 
-	for (var i=0; i < math_anchor.length; i++) {
-		if (j === 500) {
-			break;
-		}
-		if (math_anchor[i].nodeName == "BR") {
-			if (i<3) {
-				continue
-			}
-		var tag = document.createElement("span")
-		tag.className = "estimates";
-		var text = document.createTextNode(" | " + est_range[j].toLocaleString() + " | ");
-		tag.appendChild(text);
-		math_anchor[i].before(tag);
-		j = j + 1
-		i = i + 1
-			}		
-	}
-	}
-}
+        for (let i = 0; i < found_list.length; i += 2) { // take every second element
+            ranges.push(found_list[i]);
+        }
+        // console.log(ranges);
+
+        for (let i = 1; i < found_list.length; i += 2) { // take every second element
+            estimates.push(found_list[i]);
+        }
+        // console.log(estimates);
+
+        for (let i = 1; i < found_list.length; i += 2) { // take every second element
+            n = (found_list[i] - found_list[i + 2]) / (found_list[i + 1] - found_list[i - 1]);
+            multiplier.push(n);
+        }
+        // console.log(multiplier);
+        let x;
+        // console.log("calc start");
+        k = 0;
+        l = Math.max(...estimates).toString().length;
+
+		while (k < ranges.length - 1) {
+                for (let i = 1; i < 501; i++) {
+
+                    if (i < ranges[0]) {
+                        est_range.push("-".repeat(l));
+                        // x = "no estimates"
+                    } else {
+                        if (i < ranges[k + 1]) {
+                            est_range.push(Math.floor(estimates[k] - (multiplier[k] * (i - ranges[k]))));
+                            x = Math.floor(estimates[k] - (multiplier[k] * (i - ranges[k])));
+                        } else {
+                            est_range.push(Math.floor(estimates[k] - (multiplier[k] * (i - ranges[k]))));
+                            x = Math.floor(estimates[k] - (multiplier[k] * (i - ranges[k])));
+                            k = k + 1;
+                        }
+
+                    }
+                    // console.log(i + "|" + x + "|" + k + "|" + ranges[k] + "|" + ranges[k + 1]);
+                }
+            }
+        // console.log("calc end");
+
+        for (let i = 0; i < math_anchor.length; i++) {
+            if (j === 500) {
+                break;
+            }
+            if (math_anchor[i].nodeName == "BR") {
+                if (j <1){ // for first estimate
+                if (i < 3 || (math_anchor[i+2].nodeName!="A" || math_anchor[i-1].nodeName=="BR")) {
+                    continue;
+                }}
+                let tag = document.createElement("span");
+                    tag.className = "estimates";
+                tag.innerHTML = est_range[j].toLocaleString();
+                math_anchor[i].before(tag);
+                j = j + 1;
+                i = i + 1;
+            }
+        }
+
+    } 
+
+checkpage()

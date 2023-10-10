@@ -2,4 +2,7 @@
 	display : inline ; 
 	color : red;
 }
-	
+
+.estimates::before {
+	content: "  |  ";
+  }

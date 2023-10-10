@@ -62,7 +62,6 @@ function filterfunction(filter_id) {
   function sum_current(table) {
     cols = table.rows[0].cells.length;
     if (cols > 6) {
-      console.log('enter');
       total = 0;
       let subTotal = Array.from(table.rows).reduce((total, row) => {
         if(!row.getAttribute("style")){
