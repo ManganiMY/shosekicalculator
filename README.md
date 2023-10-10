@@ -20,6 +20,8 @@ Alternative DL
 
 STEPS (Firefox)
 1. Download the "shoseki_calculator_firefox.xpi" file in "shoseki_calculator_firefox" directory.
+  i) select the latest xpi file.
+  ii) click raw to download the file.
 2. The Extension should ask to be install after download, if not continue with the steps.
 3. Extract/Unzip the file to a directory somewhere your PC.
 4. in Firefox go to "about:addons" > and click on the Manange your extension setting and choose the "shoseki_calculator_firefox.xpi" file
